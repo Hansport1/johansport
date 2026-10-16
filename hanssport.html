@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HansSport - Toko Sepatu Futsal Original & Terpercaya</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Inter & Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: '#FF5722',
+                            neon: '#CCFF00',
+                            dark: '#0F172A',
+                            darker: '#090D16',
+                            gray: '#1E293B',
+                            accent: '#F97316'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #ff5722;
+            border-radius: 4px;
+        }
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-brand-darker text-slate-100 font-sans min-h-screen flex flex-col custom-scrollbar">
+
+    <!-- Top Bar -->
+    <div class="bg-gradient-to-r from-brand-orange to-red-600 text-white text-xs py-2 px-4 text-center font-semibold tracking-wide">
+        🔥 PROMO SPESIAL HARI INI: VOUCHER DISKON UP TO 30% + GRATIS ONGKIR SE-INDONESIA! KODE: <span class="bg-black/30 px-2 py-0.5 rounded border border-white/30 text-brand-neon font-bold">HANSSPORT30</span>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 glass-nav border-b border-slate-800 shadow-xl transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20 gap-4">
+                
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2 group">
+                    <div class="bg-brand-orange text-white p-2.5 rounded-xl font-black text-2xl tracking-wider transform -skew-x-12 group-hover:scale-105 transition-all shadow-lg shadow-orange-500/30">
+                        HS<span class="text-brand-neon">.</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-heading font-black text-2xl tracking-wider text-white group-hover:text-brand-orange transition-colors">
+                            HANS<span class="text-brand-orange">SPORT</span>
+                        </span>
+                        <span class="text-[9px] uppercase tracking-widest text-slate-400 font-semibold -mt-1">Futsal Gear Specialist</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-8 font-medium text-sm">
+                    <a href="#beranda" class="text-brand-orange font-bold hover:text-brand-orange transition-colors">Beranda</a>
+                    <a href="#katalog" class="text-slate-300 hover:text-brand-orange transition-colors">Produk</a>
+                    <a href="#promo" class="text-slate-300 hover:text-brand-orange transition-colors flex items-center gap-1">
+                        Promo <span class="bg-red-500 text-white text-[10px] px-1.5 py-0.2 rounded-full font-bold">HOT</span>
+                    </a>
+                    <a href="#keunggulan" class="text-slate-300 hover:text-brand-orange transition-colors">Tentang Kami</a>
+                    <a href="#kontak" class="text-slate-300 hover:text-brand-orange transition-colors">Kontak</a>
+                </nav>
+
+                <!-- Search & Actions -->
+                <div class="flex items-center space-x-3 sm:space-x-4">
+                    <!-- Search Input Desktop -->
+                    <div class="relative hidden sm:block w-48 md:w-60">
+                        <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="Cari sepatu futsal..." 
+                            class="w-full bg-slate-800/80 border border-slate-700 text-slate-200 text-xs rounded-full py-2 pl-9 pr-4 focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange transition-all">
+                        <i class="fas fa-search absolute left-3 top-2.5 text-slate-400 text-xs"></i>
+                    </div>
+
+                    <!-- Wishlist Button -->
+                    <button onclick="toggleWishlistModal()" class="relative p-2.5 text-slate-300 hover:text-brand-orange rounded-full hover:bg-slate-800 transition-colors">
+                        <i class="far fa-heart text-lg"></i>
+                        <span id="wishlistBadge" class="absolute top-1 right-1 bg-red-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold hidden">0</span>
+                    </button>
+
+                    <!-- Cart Button -->
+                    <button onclick="toggleCartDrawer()" class="relative p-2.5 bg-brand-orange hover:bg-orange-600 text-white rounded-xl shadow-lg shadow-orange-500/20 transition-all flex items-center gap-2 px-3.5">
+                        <i class="fas fa-shopping-cart text-sm"></i>
+                        <span class="font-bold text-xs hidden md:inline">Keranjang</span>
+                        <span id="cartBadge" class="bg-slate-900 text-brand-neon text-xs font-extrabold px-2 py-0.5 rounded-full border border-slate-700">0</span>
+                    </button>
+
+                    <!-- Mobile Menu Button -->
+                    <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-slate-300 hover:text-white focus:outline-none">
+                        <i class="fas fa-bars text-xl" id="menuIcon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Search Mobile Bar -->
+            <div class="sm:hidden pb-3">
+                <div class="relative w-full">
+                    <input type="text" id="searchMobileInput" onkeyup="handleSearchMobile()" placeholder="Cari sepatu futsal..." 
+                        class="w-full bg-slate-800 border border-slate-700 text-slate-200 text-xs rounded-full py-2 pl-9 pr-4 focus:outline-none focus:border-brand-orange">
+                    <i class="fas fa-search absolute left-3 top-2.5 text-slate-400 text-xs"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Nav -->
+        <div id="mobileMenu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 px-4 pt-2 pb-4 space-y-2">
+            <a href="#beranda" class="block py-2 text-brand-orange font-semibold">Beranda</a>
+            <a href="#katalog" class="block py-2 text-slate-300 hover:text-brand-orange">Produk</a>
+            <a href="#promo" class="block py-2 text-slate-300 hover:text-brand-orange">Promo</a>
+            <a href="#keunggulan" class="block py-2 text-slate-300 hover:text-brand-orange">Tentang Kami</a>
+            <a href="#kontak" class="block py-2 text-slate-300 hover:text-brand-orange">Kontak</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="beranda" class="relative bg-gradient-to-br from-slate-900 via-brand-dark to-slate-950 py-16 lg:py-24 overflow-hidden border-b border-slate-800">
+        <!-- Abstract Background Effects -->
+        <div class="absolute top-0 right-0 -mt-12 -mr-12 w-96 h-96 bg-brand-orange/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 -mb-12 -ml-12 w-96 h-96 bg-brand-neon/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-500/10 border border-brand-orange/30 text-brand-orange text-xs font-semibold">
+                        <i class="fas fa-bolt text-brand-neon"></i> Koleksi Sepatu Futsal Terbaru 2026
+                    </div>
+                    
+                    <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight uppercase tracking-tight">
+                        Cetak Gol & Kuasai <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange via-amber-400 to-brand-neon">Lapangan Futsal!</span>
+                    </h1>
+                    
+                    <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Tingkatkan akselerasi, kontrol bola, dan stabilitas pakan dengan koleksi sepatu futsal 100% Original dari brand ternama dunia & lokal seperti Specs, Ortuseight, Nike, Adidas, dan Puma.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#katalog" class="w-full sm:w-auto bg-brand-orange hover:bg-orange-600 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-orange-500/30 hover:scale-105 transition-all text-center flex items-center justify-center gap-2">
+                            <i class="fas fa-shopping-bag"></i> Belanja Sekarang
+                        </a>
+                        <a href="#promo" class="w-full sm:w-auto border border-slate-700 bg-slate-800/50 hover:bg-slate-800 text-slate-200 font-semibold px-8 py-4 rounded-xl hover:border-brand-orange transition-all text-center flex items-center justify-center gap-2">
+                            <i class="fas fa-tags text-brand-orange"></i> Lihat Promo Diskon
+                        </a>
+                    </div>
+
+                    <!-- Trust Indicators -->
+                    <div class="pt-8 border-t border-slate-800/80 grid grid-cols-3 gap-4 text-center lg:text-left">
+                        <div>
+                            <div class="font-heading font-black text-2xl text-white">100%</div>
+                            <div class="text-xs text-slate-400">Original Guaranteed</div>
+                        </div>
+                        <div>
+                            <div class="font-heading font-black text-2xl text-white">24/7</div>
+                            <div class="text-xs text-slate-400">Customer Support</div>
+                        </div>
+                        <div>
+                            <div class="font-heading font-black text-2xl text-white">10K+</div>
+                            <div class="text-xs text-slate-400">Pemain Puas</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Image Highlight -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-brand-orange to-brand-neon rounded-3xl blur opacity-30 animate-pulse"></div>
+                        <div class="relative bg-slate-900 border border-slate-800 p-4 rounded-3xl overflow-hidden shadow-2xl">
+                            <img src="https://images.unsplash.com/photo-1511886929837-354d827aae26?auto=format&fit=crop&w=800&q=80" alt="Sepatu Futsal HansSport" class="w-full h-80 sm:h-96 object-cover rounded-2xl transform hover:scale-105 transition-transform duration-500">
+                            
+                            <!-- Floating Badge -->
+                            <div class="absolute bottom-8 left-8 right-8 bg-slate-950/90 backdrop-blur-md p-4 rounded-xl border border-slate-800 flex items-center justify-between">
+                                <div>
+                                    <span class="text-[10px] text-brand-neon uppercase font-bold tracking-widest">Trending Choice</span>
+                                    <h4 class="font-bold text-sm text-white">Specs Lightspeed Reborn</h4>
+                                    <p class="text-xs text-brand-orange font-bold">Rp 549.000 <span class="text-slate-500 line-through text-[10px]">Rp 699.000</span></p>
+                                </div>
+                                <button onclick="openQuickView(1)" class="bg-brand-orange hover:bg-orange-600 text-white p-2.5 rounded-lg text-xs font-bold transition-colors">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Keunggulan Section -->
+    <section id="keunggulan" class="py-12 bg-slate-900/60 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                
+                <div class="p-4 bg-slate-800/40 rounded-2xl border border-slate-800/80 flex items-center gap-4 hover:border-brand-orange/50 transition-all">
+                    <div class="w-12 h-12 bg-brand-orange/10 text-brand-orange rounded-xl flex items-center justify-center text-xl shrink-0">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm text-white">100% Original</h4>
+                        <p class="text-xs text-slate-400">Garansi uang kembali</p>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-slate-800/40 rounded-2xl border border-slate-800/80 flex items-center gap-4 hover:border-brand-orange/50 transition-all">
+                    <div class="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-xl flex items-center justify-center text-xl shrink-0">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm text-white">Pengiriman Cepat</h4>
+                        <p class="text-xs text-slate-400">Proses kirim hari ini</p>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-slate-800/40 rounded-2xl border border-slate-800/80 flex items-center gap-4 hover:border-brand-orange/50 transition-all">
+                    <div class="w-12 h-12 bg-green-500/10 text-green-400 rounded-xl flex items-center justify-center text-xl shrink-0">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm text-white">Garansi Ukuran</h4>
+                        <p class="text-xs text-slate-400">Bisa tukar size mudah</p>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-slate-800/40 rounded-2xl border border-slate-800/80 flex items-center gap-4 hover:border-brand-orange/50 transition-all">
+                    <div class="w-12 h-12 bg-amber-500/10 text-amber-400 rounded-xl flex items-center justify-center text-xl shrink-0">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm text-white">Bayar di Tempat</h4>
+                        <p class="text-xs text-slate-400">Layanan COD tersedia</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalog Section -->
+    <section id="katalog" class="py-16 bg-brand-darker relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                <div>
+                    <span class="text-brand-orange text-xs font-bold uppercase tracking-widest">Katalog HansSport</span>
+                    <h2 class="font-heading text-3xl sm:text-4xl font-black text-white">Koleksi Sepatu Futsal Pilihan</h2>
+                </div>
+                <div class="flex items-center gap-3">
+                    <label for="sortBy" class="text-xs text-slate-400 whitespace-nowrap">Urutkan:</label>
+                    <select id="sortBy" onchange="applyFilters()" class="bg-slate-800 border border-slate-700 text-xs text-slate-200 rounded-xl px-3 py-2 focus:outline-none focus:border-brand-orange">
+                        <option value="default">Rekomendasi</option>
+                        <option value="low-price">Harga: Terendah ke Tertinggi</option>
+                        <option value="high-price">Harga: Tertinggi ke Terendah</option>
+                        <option value="rating">Rating Tertinggi</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Main Layout with Filters Sidebar -->
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                
+                <!-- Filter Sidebar -->
+                <div class="lg:col-span-1">
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sticky top-24 space-y-6">
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                            <h3 class="font-bold text-white text-base flex items-center gap-2">
+                                <i class="fas fa-filter text-brand-orange text-sm"></i> Filter Produk
+                            </h3>
+                            <button onclick="resetFilters()" class="text-xs text-slate-400 hover:text-brand-orange font-semibold">Reset</button>
+                        </div>
+
+                        <!-- Filter Brand -->
+                        <div>
+                            <h4 class="text-xs font-bold uppercase text-slate-400 mb-3 tracking-wider">Brand / Merk</h4>
+                            <div class="space-y-2">
+                                <label class="flex items-center gap-2.5 text-sm text-slate-300 cursor-pointer hover:text-white">
+                                    <input type="checkbox" value="Specs" onchange="applyFilters()" class="brand-checkbox rounded bg-slate-800 border-slate-700 text-brand-orange focus:ring-0">
+                                    <span>Specs</span>
+                                </label>
+                                <label class="flex items-center gap-2.5 text-sm text-slate-300 cursor-pointer hover:text-white">
+                                    <input type="checkbox" value="Ortuseight" onchange="applyFilters()" class="brand-checkbox rounded bg-slate-800 border-slate-700 text-brand-orange focus:ring-0">
+                                    <span>Ortuseight</span>
+                                </label>
+                                <label class="flex items-center gap-2.5 text-sm text-slate-300 cursor-pointer hover:text-white">
+                                    <input type="checkbox" value="Nike" onchange="applyFilters()" class="brand-checkbox rounded bg-slate-800 border-slate-700 text-brand-orange focus:ring-0">
+                                    <span>Nike</span>
+                                </label>
+                                <label class="flex items-center gap-2.5 text-sm text-slate-300 cursor-pointer hover:text-white">
+                                    <input type="checkbox" value="Adidas" onchange="applyFilters()" class="brand-checkbox rounded bg-slate-800 border-slate-700 text-brand-orange focus:ring-0">
+                                    <span>Adidas</span>
+                                </label>
+                                <label class="flex items-center gap-2.5 text-sm text-slate-300 cursor-pointer hover:text-white">
+                                    <input type="checkbox" value="Puma" onchange="applyFilters()" class="brand-checkbox rounded bg-slate-800 border-slate-700 text-brand-orange focus:ring-0">
+                                    <span>Puma</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Filter Size -->
+                        <div>
+                            <h4 class="text-xs font-bold uppercase text-slate-400 mb-3 tracking-wider">Ukuran (EU)</h4>
+                            <div class="grid grid-cols-4 gap-2">
+                                <button type="button" onclick="toggleSizeFilter(this, 38)" class="size-btn py-1.5 border border-slate-700 bg-slate-800/50 rounded-lg text-xs font-semibold text-slate-300 hover:border-brand-orange hover:text-white">38</button>
+                                <button type="button" onclick="toggleSizeFilter(this, 39)" class="size-btn py-1.5 border border-slate-700 bg-slate-800/50 rounded-lg text-xs font-semibold text-slate-300 hover:border-brand-orange hover:text-white">39</button>
+                                <button type="button" onclick="toggleSizeFilter(this, 40)" class="size-btn py-1.5 border border-slate-700 bg-slate-800/50 rounded-lg text-xs font-semibold text-slate-300 hover:border-brand-orange hover:text-white">40</button>
+                                <button type="button" onclick="toggleSizeFilter(this, 41)" class="size-btn py-1.5 border border-slate-700 bg-slate-800/50 rounded-lg text-xs font-semibold text-slate-300 hover:border-brand-orange hover:text-white">41</button>
+                                <button type="button" onclick="toggleSizeFilter(this, 42)" class="size-btn py-1.5 border border-slate-700 bg-slate-800/50 rounded-lg text-xs font-semibold text-slate-300 hover:border-brand-orange hover:text-white">42</button>
+                                <button type="button" onclick="toggleSizeFilter(this, 43)" class="size-btn py-1.5 border border-slate-700 bg-slate-800/50 rounded-lg text-xs font-semibold text-slate-300 hover:border-brand-orange hover:text-white">43</button>
+                                <button type="button" onclick="toggleSizeFilter(this, 44)" class="size-btn py-1.5 border border-slate-700 bg-slate-800/50 rounded-lg text-xs font-semibold text-slate-300 hover:border-brand-orange hover:text-white">44</button>
+                                <button type="button" onclick="toggleSizeFilter(this, 45)" class="size-btn py-1.5 border border-slate-700 bg-slate-800/50 rounded-lg text-xs font-semibold text-slate-300 hover:border-brand-orange hover:text-white">45</button>
+                            </div>
+                        </div>
+
+                        <!-- Filter Price Range -->
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="text-xs font-bold uppercase text-slate-400 tracking-wider">Maksimal Harga</h4>
+                                <span id="priceLabel" class="text-xs text-brand-orange font-bold">Rp 2.500.000</span>
+                            </div>
+                            <input type="range" id="priceRange" min="300000" max="2500000" step="50000" value="2500000" oninput="updatePriceLabel(this.value); applyFilters()" class="w-full accent-brand-orange bg-slate-800 h-2 rounded-lg cursor-pointer">
+                            <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+                                <span>300rb</span>
+                                <span>2.5jt</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Product Grid -->
+                <div class="lg:col-span-3">
+                    <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Products will be loaded dynamically via JavaScript -->
+                    </div>
+
+                    <!-- Empty State Filter -->
+                    <div id="noProductsFound" class="hidden text-center py-16 bg-slate-900/50 rounded-2xl border border-slate-800">
+                        <i class="fas fa-search-minus text-4xl text-slate-600 mb-3"></i>
+                        <h4 class="text-lg font-bold text-white">Produk tidak ditemukan</h4>
+                        <p class="text-xs text-slate-400 mt-1">Coba sesuaikan kata kunci pencarian atau reset filter Anda.</p>
+                        <button onclick="resetFilters()" class="mt-4 bg-brand-orange text-white text-xs px-4 py-2 rounded-lg font-semibold">Reset Filter</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Promo Banner -->
+    <section id="promo" class="py-12 bg-gradient-to-r from-red-950 via-slate-900 to-amber-950 border-y border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-slate-900/80 border border-amber-500/30 rounded-3xl p-8 sm:p-10 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="space-y-4 max-w-xl">
+                    <span class="bg-red-500 text-white font-bold text-[10px] px-3 py-1 rounded-full uppercase tracking-wider">Flash Sale Akhir Pekan</span>
+                    <h3 class="font-heading text-3xl font-black text-white">Diskon Spesial Specs Lightspeed Series Up To 35%</h3>
+                    <p class="text-xs sm:text-sm text-slate-300">Dapatkan akselerasi maksimal di lapangan sintetis maupun vinyl. Stok terbatas untuk promo minggu ini!</p>
+                    <div class="flex items-center gap-4 pt-2">
+                        <a href="#katalog" onclick="filterByBrand('Specs')" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold text-xs px-6 py-3 rounded-xl transition-all">Ambil Promo Specs</a>
+                    </div>
+                </div>
+                <div class="relative shrink-0 w-full md:w-72">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80" alt="Specs Promo" class="rounded-2xl object-cover h-48 w-full shadow-xl">
+                    <div class="absolute -top-3 -right-3 bg-red-600 text-white font-black text-xs px-3 py-1.5 rounded-full shadow-lg transform rotate-12">SAVE 35%</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-slate-900/40 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-brand-orange text-xs font-bold uppercase tracking-widest">Ulasan Pelanggan</span>
+                <h2 class="font-heading text-3xl font-black text-white mt-1">Apa Kata Mereka Tentang HansSport?</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Testi 1 -->
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-4">
+                    <div class="flex text-amber-400 text-xs gap-1">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">"Sepatu Specs Lightspeed Reborn original 100%! Nyaman banget dipake main di lapangan interlock, pengirimannya super cepat cuma sehari nyampe. Recommended!"</p>
+                    <div class="flex items-center gap-3 pt-2">
+                        <div class="w-10 h-10 bg-brand-orange text-white rounded-full flex items-center justify-center font-bold text-sm">R</div>
+                        <div>
+                            <h5 class="text-xs font-bold text-white">Rian Ardianto</h5>
+                            <span class="text-[10px] text-slate-500">Pemain Liga Futsal Amatir</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testi 2 -->
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-4">
+                    <div class="flex text-amber-400 text-xs gap-1">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">"Sangat terbantu sama admin HansSport! Awalnya agak kebesaran pas dipake, langsung bisa ditukar ukuran tanpa ribet. Pelayanan bintang lima!"</p>
+                    <div class="flex items-center gap-3 pt-2">
+                        <div class="w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-sm">B</div>
+                        <div>
+                            <h5 class="text-xs font-bold text-white">Budi Santoso</h5>
+                            <span class="text-[10px] text-slate-500">Member Setia HansSport</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testi 3 -->
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-4">
+                    <div class="flex text-amber-400 text-xs gap-1">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">"Beli Ortuseight Jogosala di sini harganya dapet diskon mantap. Sol-nya empuk dan grip di lapangan sangat gigit. Fix bakal order lagi!"</p>
+                    <div class="flex items-center gap-3 pt-2">
+                        <div class="w-10 h-10 bg-green-500 text-white rounded-full flex items-center justify-center font-bold text-sm">A</div>
+                        <div>
+                            <h5 class="text-xs font-bold text-white">Ahmad Fauzi</h5>
+                            <span class="text-[10px] text-slate-500">Kapten Tim Futsal Kampus</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="kontak" class="bg-slate-950 border-t border-slate-800 pt-16 pb-8 text-slate-400 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                
+                <!-- Col 1: Brand -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2">
+                        <div class="bg-brand-orange text-white p-2 rounded-lg font-black text-lg transform -skew-x-12">HS</div>
+                        <span class="font-heading font-black text-xl text-white">HANS<span class="text-brand-orange">SPORT</span></span>
+                    </div>
+                    <p class="text-slate-400 leading-relaxed">Toko online spesialis sepatu futsal original terlengkap dan terpercaya di Indonesia. Menyediakan perlengkapan futsal terbaik untuk performa maksimal Anda.</p>
+                    <div class="flex space-x-3 pt-2">
+                        <a href="#" class="w-8 h-8 bg-slate-800 hover:bg-brand-orange text-slate-300 hover:text-white rounded-full flex items-center justify-center transition-colors"><i class="fab font-bold fa-instagram"></i></a>
+                        <a href="#" class="w-8 h-8 bg-slate-800 hover:bg-brand-orange text-slate-300 hover:text-white rounded-full flex items-center justify-center transition-colors"><i class="fab font-bold fa-tiktok"></i></a>
+                        <a href="#" class="w-8 h-8 bg-slate-800 hover:bg-brand-orange text-slate-300 hover:text-white rounded-full flex items-center justify-center transition-colors"><i class="fab font-bold fa-facebook-f"></i></a>
+                        <a href="#" class="w-8 h-8 bg-slate-800 hover:bg-brand-orange text-slate-300 hover:text-white rounded-full flex items-center justify-center transition-colors"><i class="fab font-bold fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Navigation -->
+                <div>
+                    <h4 class="font-bold text-white text-sm mb-4">Navigasi Cepat</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="#beranda" class="hover:text-brand-orange transition-colors">Beranda</a></li>
+                        <li><a href="#katalog" class="hover:text-brand-orange transition-colors">Katalog Sepatu</a></li>
+                        <li><a href="#promo" class="hover:text-brand-orange transition-colors">Promo Terbaru</a></li>
+                        <li><a href="#keunggulan" class="hover:text-brand-orange transition-colors">Keunggulan HansSport</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Brand Partner -->
+                <div>
+                    <h4 class="font-bold text-white text-sm mb-4">Brand Populer</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="#katalog" onclick="filterByBrand('Specs')" class="hover:text-brand-orange transition-colors">Specs Futsal</a></li>
+                        <li><a href="#katalog" onclick="filterByBrand('Ortuseight')" class="hover:text-brand-orange transition-colors">Ortuseight Futsal</a></li>
+                        <li><a href="#katalog" onclick="filterByBrand('Nike')" class="hover:text-brand-orange transition-colors">Nike Mercurial Futsal</a></li>
+                        <li><a href="#katalog" onclick="filterByBrand('Adidas')" class="hover:text-brand-orange transition-colors">Adidas Predator Futsal</a></li>
+                        <li><a href="#katalog" onclick="filterByBrand('Puma')" class="hover:text-brand-orange transition-colors">Puma Future Futsal</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Contact & Payment -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-white text-sm mb-4">Hubungi Kami</h4>
+                    <p class="flex items-center gap-2"><i class="fas fa-map-marker-alt text-brand-orange"></i> Jl. Olahraga No. 88, Jakarta Selatan</p>
+                    <p class="flex items-center gap-2"><i class="fab fa-whatsapp text-green-500"></i> +62 812-1952-1906</p>
+                    <p class="flex items-center gap-2"><i class="fas fa-envelope text-brand-orange"></i> support@hanssport.id</p>
+                    
+                    <div class="pt-2">
+                        <span class="text-[10px] text-slate-500 block mb-2">Metode Pembayaran:</span>
+                        <div class="flex flex-wrap gap-2 text-slate-300">
+                            <span class="bg-slate-900 border border-slate-800 px-2 py-1 rounded text-[10px] font-semibold">BCA</span>
+                            <span class="bg-slate-900 border border-slate-800 px-2 py-1 rounded text-[10px] font-semibold">Mandiri</span>
+                            <span class="bg-slate-900 border border-slate-800 px-2 py-1 rounded text-[10px] font-semibold">GoPay</span>
+                            <span class="bg-slate-900 border border-slate-800 px-2 py-1 rounded text-[10px] font-semibold">OVO</span>
+                            <span class="bg-slate-900 border border-slate-800 px-2 py-1 rounded text-[10px] font-semibold">COD</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="border-t border-slate-900 pt-6 text-center text-slate-600 text-[11px]">
+                &copy; 2026 HansSport Futsal Store. All Rights Reserved. Designed for maximum performance.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Drawer -->
+    <div id="cartDrawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div class="absolute inset-0 bg-slate-950/70 backdrop-blur-sm transition-opacity" onclick="toggleCartDrawer()"></div>
+        
+        <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-slate-900 border-l border-slate-800 text-slate-200 flex flex-col shadow-2xl">
+                
+                <!-- Cart Header -->
+                <div class="p-6 border-b border-slate-800 flex items-center justify-between">
+                    <h3 class="font-heading font-black text-lg text-white flex items-center gap-2">
+                        <i class="fas fa-shopping-cart text-brand-orange"></i> Keranjang Belanja
+                    </h3>
+                    <button onclick="toggleCartDrawer()" class="text-slate-400 hover:text-white p-2">
+                        <i class="fas fa-times text-lg"></i>
+                    </button>
+                </div>
+
+                <!-- Cart Items List -->
+                <div id="cartItemsContainer" class="flex-1 overflow-y-auto p-6 space-y-4 custom-scrollbar">
+                    <!-- Items inserted via JS -->
+                </div>
+
+                <!-- Cart Footer / Checkout Form -->
+                <div class="p-6 border-t border-slate-800 bg-slate-950 space-y-4">
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-xs text-slate-400">
+                            <span>Subtotal</span>
+                            <span id="cartSubtotal" class="font-semibold text-slate-200">Rp 0</span>
+                        </div>
+                        <div class="flex justify-between text-xs text-slate-400">
+                            <span>Ongkos Kirim</span>
+                            <span class="text-green-400 font-semibold">GRATIS</span>
+                        </div>
+                        <div class="flex justify-between text-sm font-bold text-white pt-2 border-t border-slate-800">
+                            <span>Total Tagihan</span>
+                            <span id="cartTotal" class="text-brand-orange text-base">Rp 0</span>
+                        </div>
+                    </div>
+
+                    <!-- Checkout Accordion / Form -->
+                    <div id="checkoutForm" class="hidden space-y-3 pt-3 border-t border-slate-800">
+                        <h4 class="text-xs font-bold uppercase text-brand-neon">Data Pengiriman & Pemesanan</h4>
+                        <input type="text" id="custName" placeholder="Nama Lengkap *" class="w-full bg-slate-900 border border-slate-700 text-xs text-white p-2.5 rounded-lg focus:outline-none focus:border-brand-orange">
+                        <input type="tel" id="custPhone" placeholder="Nomor WhatsApp (Contoh: 08123456789) *" class="w-full bg-slate-900 border border-slate-700 text-xs text-white p-2.5 rounded-lg focus:outline-none focus:border-brand-orange">
+                        <textarea id="custAddress" rows="2" placeholder="Alamat Lengkap Pengiriman *" class="w-full bg-slate-900 border border-slate-700 text-xs text-white p-2.5 rounded-lg focus:outline-none focus:border-brand-orange"></textarea>
+                        
+                        <div class="space-y-1">
+                            <label class="text-[10px] text-slate-400">Metode Pembayaran:</label>
+                            <select id="custPayment" class="w-full bg-slate-900 border border-slate-700 text-xs text-white p-2.5 rounded-lg focus:outline-none focus:border-brand-orange">
+                                <option value="Transfer Bank (BCA / Mandiri)">Transfer Bank (BCA / Mandiri)</option>
+                                <option value="E-Wallet (GoPay / OVO / DANA)">E-Wallet (GoPay / OVO / DANA)</option>
+                                <option value="COD (Bayar di Tempat)">COD (Bayar di Tempat)</option>
+                            </select>
+                        </div>
+
+                        <button onclick="sendOrderToWhatsApp()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 text-xs shadow-lg shadow-green-600/30 transition-colors">
+                            <i class="fab fa-whatsapp text-base"></i> Kirim Pesanan via WhatsApp
+                        </button>
+                    </div>
+
+                    <button id="btnProceedCheckout" onclick="showCheckoutForm()" class="w-full bg-brand-orange hover:bg-orange-600 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 text-xs shadow-lg shadow-orange-500/30 transition-colors">
+                        Lanjut ke Checkout
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Quick View / Product Detail -->
+    <div id="productModal" class="fixed inset-0 z-50 overflow-y-auto hidden">
+        <div class="min-h-screen px-4 text-center flex items-center justify-center">
+            <div class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm transition-opacity" onclick="closeProductModal()"></div>
+
+            <div class="inline-block w-full max-w-3xl my-8 p-6 text-left transition-all transform bg-slate-900 border border-slate-800 rounded-3xl shadow-2xl relative z-10 text-slate-200">
+                <button onclick="closeProductModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-2 z-10">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+
+                <div id="modalContent" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Populated via JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Wishlist -->
+    <div id="wishlistModal" class="fixed inset-0 z-50 overflow-y-auto hidden">
+        <div class="min-h-screen px-4 text-center flex items-center justify-center">
+            <div class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm transition-opacity" onclick="toggleWishlistModal()"></div>
+
+            <div class="inline-block w-full max-w-2xl my-8 p-6 text-left transition-all transform bg-slate-900 border border-slate-800 rounded-3xl shadow-2xl relative z-10 text-slate-200">
+                <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                    <h3 class="font-heading font-black text-lg text-white flex items-center gap-2">
+                        <i class="fas fa-heart text-red-500"></i> Wishlist Favorit Saya
+                    </h3>
+                    <button onclick="toggleWishlistModal()" class="text-slate-400 hover:text-white p-1">
+                        <i class="fas fa-times text-lg"></i>
+                    </button>
+                </div>
+
+                <div id="wishlistContainer" class="py-4 space-y-4 max-h-96 overflow-y-auto custom-scrollbar">
+                    <!-- Populated via JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 border border-brand-orange text-white text-xs px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3">
+        <i class="fas fa-check-circle text-green-400 text-lg"></i>
+        <span id="toastMsg">Produk berhasil ditambahkan!</span>
+    </div>
+
+    <script>
+        // Product Data List
+        const products = [
+            {
+                id: 1,
+                name: "Specs Lightspeed Reborn FG Futsal",
+                brand: "Specs",
+                price: 549000,
+                originalPrice: 699000,
+                rating: 4.9,
+                reviews: 128,
+                badge: "BEST SELLER",
+                badgeColor: "bg-red-500",
+                sizes: [38, 39, 40, 41, 42, 43],
+                color: "Lime Neon / Dark Navy",
+                image: "https://images.unsplash.com/photo-1511886929837-354d827aae26?auto=format&fit=crop&w=800&q=80",
+                description: "Sepatu futsal paling ikonis dari Specs dengan teknologi Vertecs untuk fleksibilitas maksimal dan akselerasi tinggi di lapangan."
+            },
+            {
+                id: 2,
+                name: "Ortuseight Jogosala Venom Futsal",
+                brand: "Ortuseight",
+                price: 479000,
+                originalPrice: 599000,
+                rating: 4.8,
+                reviews: 95,
+                badge: "DISCOUNT",
+                badgeColor: "bg-amber-500",
+                sizes: [39, 40, 41, 42, 44],
+                color: "Orange Flame / White",
+                image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80",
+                description: "Dilengkapi teknologi Ort-Curve & Quick-Fit. Memberikan kenyamanan penuh dan grip luar biasa untuk gaya permainan pivot & flank."
+            },
+            {
+                id: 3,
+                name: "Nike Mercurial Vapor 15 Academy IC",
+                brand: "Nike",
+                price: 1199000,
+                originalPrice: 1399000,
+                rating: 5.0,
+                reviews: 210,
+                badge: "BARU",
+                badgeColor: "bg-blue-600",
+                sizes: [40, 41, 42, 43, 44, 45],
+                color: "Metallic Red / Yellow",
+                image: "https://images.unsplash.com/photo-1579338559194-a162d19bf842?auto=format&fit=crop&w=800&q=80",
+                description: "Dilengkapi unit Air Zoom khusus lapangan indoor. Desain aerodinamis memberikan kontrol cepat dan traksi superior."
+            },
+            {
+                id: 4,
+                name: "Adidas Predator Accuracy.3 IN",
+                brand: "Adidas",
+                price: 1050000,
+                originalPrice: 1200000,
+                rating: 4.7,
+                reviews: 82,
+                badge: "POPULER",
+                badgeColor: "bg-purple-600",
+                sizes: [38, 39, 40, 41, 42],
+                color: "Core Black / Team Solar",
+                image: "https://images.unsplash.com/photo-1520256862855-398228c41684?auto=format&fit=crop&w=800&q=80",
+                description: "Tekstur High Definition Grip pada bagian atas sepatu memastikan akurasi umpan dan tembakan keras tanpa cela."
+            },
+            {
+                id: 5,
+                name: "Puma Future Match IT Futsal",
+                brand: "Puma",
+                price: 989000,
+                originalPrice: 1199000,
+                rating: 4.8,
+                reviews: 64,
+                badge: "BEST SELLER",
+                badgeColor: "bg-red-500",
+                sizes: [39, 40, 41, 42, 43],
+                color: "Blue Glimmer / White",
+                image: "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?auto=format&fit=crop&w=800&q=80",
+                description: "Didesain dengan FUZIONFIT+ adaptif yang mengunci kaki Anda dengan pas tanpa membatasi pergerakan saat melakukan drible."
+            },
+            {
+                id: 6,
+                name: "Specs Accelerator Illuzion II IN",
+                brand: "Specs",
+                price: 629000,
+                originalPrice: 799000,
+                rating: 4.9,
+                reviews: 140,
+                badge: "DISCOUNT",
+                badgeColor: "bg-amber-500",
+                sizes: [38, 40, 41, 42, 43, 44],
+                color: "Neon Green / Cyan",
+                image: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80",
+                description: "Kontruksi tanpa tali yang memberikan area kontak bola lebih luas untuk kontrol presisi dan tembakan tanpa hambatan."
+            },
+            {
+                id: 7,
+                name: "Ortuseight Catalyst Liberte IN",
+                brand: "Ortuseight",
+                price: 529000,
+                originalPrice: 649000,
+                rating: 4.7,
+                reviews: 77,
+                badge: "BARU",
+                badgeColor: "bg-blue-600",
+                sizes: [39, 40, 41, 42, 43],
+                color: "White / Gold Minimalist",
+                image: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=800&q=80",
+                description: "Sepatu ultra-ringan berbahan Quick-Skin sintesis. Sangat cocok bagi pemain dengan mobilitas tinggi di atas lapangan."
+            },
+            {
+                id: 8,
+                name: "Nike Tiempo Legend 9 Academy IC",
+                brand: "Nike",
+                price: 1089000,
+                originalPrice: 1299000,
+                rating: 4.8,
+                reviews: 112,
+                badge: "POPULER",
+                badgeColor: "bg-purple-600",
+                sizes: [40, 41, 42, 43, 44],
+                color: "Black / Cyber Yellow",
+                image: "https://images.unsplash.com/photo-1582588678413-dbf45f4823e9?auto=format&fit=crop&w=800&q=80",
+                description: "Bahan kulit lembut kelas dunia dengan pod busa empuk untuk sentuhan sentuhan bola presisi saat bertahan & menyerang."
+            }
+        ];
+
+        // State Management
+        let cart = [];
+        let wishlist = [];
+        let selectedSizesFilter = [];
+        let currentModalProduct = null;
+        let selectedSizeModal = null;
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts(products);
+            updateCartBadge();
+            updateWishlistBadge();
+        });
+
+        // Render Product Cards
+        function renderProducts(items) {
+            const grid = document.getElementById('productGrid');
+            const noFound = document.getElementById('noProductsFound');
+
+            if (items.length === 0) {
+                grid.innerHTML = '';
+                noFound.classList.remove('hidden');
+                return;
+            }
+
+            noFound.classList.add('hidden');
+            grid.innerHTML = items.map(product => {
+                const isWishlisted = wishlist.includes(product.id);
+                return `
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-slate-700 transition-all duration-300 flex flex-col group hover:-translate-y-1">
+                    
+                    <!-- Product Image & Badges -->
+                    <div class="relative h-52 bg-slate-950 overflow-hidden cursor-pointer" onclick="openQuickView(${product.id})">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 ${product.badgeColor} text-white text-[9px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider shadow">
+                            ${product.badge}
+                        </span>
+                        
+                        <!-- Quick Wishlist Button -->
+                        <button onclick="event.stopPropagation(); toggleWishlist(${product.id})" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-slate-900/80 backdrop-blur-sm text-slate-300 hover:text-red-500 flex items-center justify-center transition-colors">
+                            <i class="${isWishlisted ? 'fas text-red-500' : 'far'} fa-heart text-sm"></i>
+                        </button>
+                    </div>
+
+                    <!-- Product Body -->
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
+                        <div>
+                            <div class="flex items-center justify-between text-[11px] text-slate-400 mb-1">
+                                <span class="font-bold text-brand-orange uppercase">${product.brand}</span>
+                                <div class="flex items-center gap-1 text-amber-400 font-semibold">
+                                    <i class="fas fa-star text-[10px]"></i>
+                                    <span>${product.rating} (${product.reviews})</span>
+                                </div>
+                            </div>
+                            <h3 onclick="openQuickView(${product.id})" class="font-bold text-white text-sm hover:text-brand-orange transition-colors line-clamp-1 cursor-pointer">
+                                ${product.name}
+                            </h3>
+                        </div>
+
+                        <!-- Price Section -->
+                        <div class="pt-2 border-t border-slate-800/80">
+                            <div class="flex items-baseline justify-between">
+                                <div>
+                                    <span class="text-xs text-slate-500 line-through">Rp ${product.originalPrice.toLocaleString('id-ID')}</span>
+                                    <div class="text-base font-black text-brand-orange">Rp ${product.price.toLocaleString('id-ID')}</div>
+                                </div>
+                                <button onclick="openQuickView(${product.id})" class="bg-slate-800 hover:bg-brand-orange text-white p-2.5 rounded-xl transition-colors">
+                                    <i class="fas fa-cart-plus text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                `;
+            }).join('');
+        }
+
+        // Apply Filters (Brand, Size, Price, Search)
+        function applyFilters() {
+            let filtered = [...products];
+
+            // 1. Search Query Filter
+            const searchQuery = document.getElementById('searchInput').value.toLowerCase() || document.getElementById('searchMobileInput').value.toLowerCase();
+            if (searchQuery) {
+                filtered = filtered.filter(p => p.name.toLowerCase().includes(searchQuery) || p.brand.toLowerCase().includes(searchQuery));
+            }
+
+            // 2. Brand Filter
+            const checkedBrands = Array.from(document.querySelectorAll('.brand-checkbox:checked')).map(cb => cb.value);
+            if (checkedBrands.length > 0) {
+                filtered = filtered.filter(p => checkedBrands.includes(p.brand));
+            }
+
+            // 3. Size Filter
+            if (selectedSizesFilter.length > 0) {
+                filtered = filtered.filter(p => p.sizes.some(size => selectedSizesFilter.includes(size)));
+            }
+
+            // 4. Max Price Filter
+            const maxPrice = parseInt(document.getElementById('priceRange').value);
+            filtered = filtered.filter(p => p.price <= maxPrice);
+
+            // 5. Sorting Filter
+            const sortBy = document.getElementById('sortBy').value;
+            if (sortBy === 'low-price') {
+                filtered.sort((a, b) => a.price - b.price);
+            } else if (sortBy === 'high-price') {
+                filtered.sort((a, b) => b.price - a.price);
+            } else if (sortBy === 'rating') {
+                filtered.sort((a, b) => b.rating - a.rating);
+            }
+
+            renderProducts(filtered);
+        }
+
+        function handleSearch() {
+            applyFilters();
+        }
+
+        function handleSearchMobile() {
+            applyFilters();
+        }
+
+        function updatePriceLabel(val) {
+            document.getElementById('priceLabel').innerText = 'Rp ' + parseInt(val).toLocaleString('id-ID');
+        }
+
+        function toggleSizeFilter(btn, size) {
+            if (selectedSizesFilter.includes(size)) {
+                selectedSizesFilter = selectedSizesFilter.filter(s => s !== size);
+                btn.classList.remove('bg-brand-orange', 'text-white', 'border-brand-orange');
+                btn.classList.add('bg-slate-800/50', 'text-slate-300');
+            } else {
+                selectedSizesFilter.push(size);
+                btn.classList.add('bg-brand-orange', 'text-white', 'border-brand-orange');
+                btn.classList.remove('bg-slate-800/50', 'text-slate-300');
+            }
+            applyFilters();
+        }
+
+        function filterByBrand(brandName) {
+            resetFilters();
+            document.querySelectorAll('.brand-checkbox').forEach(cb => {
+                if (cb.value === brandName) cb.checked = true;
+            });
+            applyFilters();
+        }
+
+        function resetFilters() {
+            document.querySelectorAll('.brand-checkbox').forEach(cb => cb.checked = false);
+            selectedSizesFilter = [];
+            document.querySelectorAll('.size-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-orange', 'text-white', 'border-brand-orange');
+                btn.classList.add('bg-slate-800/50', 'text-slate-300');
+            });
+            document.getElementById('priceRange').value = 2500000;
+            updatePriceLabel(2500000);
+            document.getElementById('searchInput').value = '';
+            document.getElementById('searchMobileInput').value = '';
+            document.getElementById('sortBy').value = 'default';
+            applyFilters();
+        }
+
+        // Quick View Modal Operations
+        function openQuickView(id) {
+            currentModalProduct = products.find(p => p.id === id);
+            selectedSizeModal = currentModalProduct.sizes[0];
+
+            const modalContent = document.getElementById('modalContent');
+            modalContent.innerHTML = `
+                <div class="space-y-4">
+                    <img src="${currentModalProduct.image}" alt="${currentModalProduct.name}" class="w-full h-72 object-cover rounded-2xl bg-slate-950 border border-slate-800">
+                    <div class="flex items-center gap-2 text-xs text-slate-400">
+                        <span>Warna: <strong class="text-slate-200">${currentModalProduct.color}</strong></span>
+                    </div>
+                </div>
+
+                <div class="space-y-4 flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-bold text-brand-orange uppercase tracking-wider">${currentModalProduct.brand}</span>
+                        <h3 class="font-heading font-black text-xl text-white mt-1">${currentModalProduct.name}</h3>
+                        
+                        <div class="flex items-center gap-2 text-xs text-amber-400 my-2">
+                            <i class="fas fa-star"></i>
+                            <span class="font-bold text-white">${currentModalProduct.rating}</span>
+                            <span class="text-slate-500">(${currentModalProduct.reviews} Ulasan)</span>
+                        </div>
+
+                        <div class="flex items-baseline gap-3 my-3">
+                            <span class="text-2xl font-black text-brand-orange">Rp ${currentModalProduct.price.toLocaleString('id-ID')}</span>
+                            <span class="text-xs text-slate-500 line-through">Rp ${currentModalProduct.originalPrice.toLocaleString('id-ID')}</span>
+                        </div>
+
+                        <p class="text-xs text-slate-300 leading-relaxed">${currentModalProduct.description}</p>
+
+                        <!-- Size Selector -->
+                        <div class="mt-4">
+                            <label class="text-xs font-bold text-slate-300 block mb-2">Pilih Ukuran (EUR):</label>
+                            <div class="flex flex-wrap gap-2">
+                                ${currentModalProduct.sizes.map(s => `
+                                    <button onclick="selectModalSize(${s}, this)" class="modal-size-btn px-3 py-1.5 border rounded-lg text-xs font-bold transition-all ${s === selectedSizeModal ? 'bg-brand-orange text-white border-brand-orange' : 'border-slate-700 bg-slate-800 text-slate-300'}">
+                                        ${s}
+                                    </button>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-800 flex gap-3">
+                        <button onclick="addToCartFromModal()" class="flex-1 bg-brand-orange hover:bg-orange-600 text-white font-bold py-3 rounded-xl text-xs flex items-center justify-center gap-2 shadow-lg shadow-orange-500/20 transition-all">
+                            <i class="fas fa-cart-plus"></i> + Tambah ke Keranjang
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('productModal').classList.remove('hidden');
+        }
+
+        function selectModalSize(size, btn) {
+            selectedSizeModal = size;
+            document.querySelectorAll('.modal-size-btn').forEach(b => {
+                b.classList.remove('bg-brand-orange', 'text-white', 'border-brand-orange');
+                b.classList.add('border-slate-700', 'bg-slate-800', 'text-slate-300');
+            });
+            btn.classList.add('bg-brand-orange', 'text-white', 'border-brand-orange');
+            btn.classList.remove('border-slate-700', 'bg-slate-800', 'text-slate-300');
+        }
+
+        function closeProductModal() {
+            document.getElementById('productModal').classList.add('hidden');
+        }
+
+        // Cart Logic
+        function addToCartFromModal() {
+            if (!currentModalProduct) return;
+            
+            const existingIndex = cart.findIndex(item => item.id === currentModalProduct.id && item.size === selectedSizeModal);
+            
+            if (existingIndex > -1) {
+                cart[existingIndex].qty += 1;
+            } else {
+                cart.push({
+                    id: currentModalProduct.id,
+                    name: currentModalProduct.name,
+                    price: currentModalProduct.price,
+                    image: currentModalProduct.image,
+                    size: selectedSizeModal,
+                    qty: 1
+                });
+            }
+
+            closeProductModal();
+            updateCartUI();
+            showToast(`" ${currentModalProduct.name} " ditambahkan ke keranjang!`);
+            toggleCartDrawer();
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cartItemsContainer');
+            
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-slate-500">
+                        <i class="fas fa-shopping-basket text-4xl mb-3 text-slate-700"></i>
+                        <p class="text-xs">Keranjang belanja Anda masih kosong.</p>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = cart.map((item, index) => `
+                    <div class="flex gap-3 bg-slate-800/60 p-3 rounded-xl border border-slate-800 items-center">
+                        <img src="${item.image}" class="w-16 h-16 object-cover rounded-lg bg-slate-950 shrink-0">
+                        <div class="flex-1">
+                            <h4 class="text-xs font-bold text-white line-clamp-1">${item.name}</h4>
+                            <div class="text-[10px] text-slate-400 mt-0.5">Size: <span class="text-brand-neon font-bold">${item.size}</span></div>
+                            <div class="text-xs font-black text-brand-orange mt-1">Rp ${(item.price * item.qty).toLocaleString('id-ID')}</div>
+                        </div>
+                        <div class="flex flex-col items-end gap-2">
+                            <button onclick="removeFromCart(${index})" class="text-slate-500 hover:text-red-400 text-xs">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                            <div class="flex items-center border border-slate-700 bg-slate-900 rounded-lg text-xs">
+                                <button onclick="changeQty(${index}, -1)" class="px-2 py-0.5 text-slate-400 hover:text-white">-</button>
+                                <span class="px-2 font-bold text-white text-[11px]">${item.qty}</span>
+                                <button onclick="changeQty(${index}, 1)" class="px-2 py-0.5 text-slate-400 hover:text-white">+</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Calculation
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            document.getElementById('cartSubtotal').innerText = 'Rp ' + subtotal.toLocaleString('id-ID');
+            document.getElementById('cartTotal').innerText = 'Rp ' + subtotal.toLocaleString('id-ID');
+            
+            updateCartBadge();
+        }
+
+        function changeQty(index, delta) {
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartBadge() {
+            const badge = document.getElementById('cartBadge');
+            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+            badge.innerText = totalItems;
+        }
+
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cartDrawer');
+            drawer.classList.toggle('hidden');
+        }
+
+        function showCheckoutForm() {
+            if (cart.length === 0) {
+                showToast('Keranjang Anda masih kosong!', true);
+                return;
+            }
+            document.getElementById('checkoutForm').classList.remove('hidden');
+            document.getElementById('btnProceedCheckout').classList.add('hidden');
+        }
+
+        // WhatsApp Order Integration
+        function sendOrderToWhatsApp() {
+            const name = document.getElementById('custName').value.trim();
+            const phone = document.getElementById('custPhone').value.trim();
+            const address = document.getElementById('custAddress').value.trim();
+            const payment = document.getElementById('custPayment').value;
+
+            if (!name || !phone || !address) {
+                showToast('Mohon lengkapi seluruh data pengiriman!', true);
+                return;
+            }
+
+            let orderItemsText = '';
+            let total = 0;
+
+            cart.forEach((item, i) => {
+                const itemTotal = item.price * item.qty;
+                total += itemTotal;
+                orderItemsText += `${i + 1}. *${item.name}*\n   - Size: ${item.size}\n   - Qty: ${item.qty} x Rp ${item.price.toLocaleString('id-ID')}\n`;
+            });
+
+            const whatsappMessage = 
+`*HALO HANSSPORT, SAYA INGIN MEMESAN SEPATU FUTSAL*
+------------------------------------------
+📌 *DETAIL PESANAN:*
+${orderItemsText}
+💰 *TOTAL BAYAR:* Rp ${total.toLocaleString('id-ID')}
+💳 *METODE PEMBAYARAN:* ${payment}
+
+------------------------------------------
+👤 *DATA PEMESAN:*
+• *Nama:* ${name}
+• *No. WA:* ${phone}
+• *Alamat Pengiriman:* ${address}
+
+Mohon diproses pesanan saya. Terima kasih!`;
+
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            const waNumber = '6281219521906'; // Nomor Admin WhatsApp yang sudah diperbarui
+
+            // Membuka langsung https://web.whatsapp.com untuk desktop / laptop
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            const waUrl = isMobile 
+                ? `https://api.whatsapp.com/send?phone=${waNumber}&text=${encodedMessage}`
+                : `https://web.whatsapp.com/send?phone=${waNumber}&text=${encodedMessage}`;
+
+            window.open(waUrl, '_blank');
+        }
+
+        // Wishlist Operations
+        function toggleWishlist(id) {
+            const index = wishlist.indexOf(id);
+            if (index > -1) {
+                wishlist.splice(index, 1);
+                showToast('Produk dihapus dari Wishlist');
+            } else {
+                wishlist.push(id);
+                showToast('Produk ditambahkan ke Wishlist ❤️');
+            }
+            updateWishlistBadge();
+            applyFilters();
+            renderWishlistModal();
+        }
+
+        function updateWishlistBadge() {
+            const badge = document.getElementById('wishlistBadge');
+            badge.innerText = wishlist.length;
+            if (wishlist.length > 0) {
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function toggleWishlistModal() {
+            const modal = document.getElementById('wishlistModal');
+            modal.classList.toggle('hidden');
+            if (!modal.classList.contains('hidden')) {
+                renderWishlistModal();
+            }
+        }
+
+        function renderWishlistModal() {
+            const container = document.getElementById('wishlistContainer');
+            if (wishlist.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-8 text-slate-500">
+                        <i class="far fa-heart text-3xl mb-2 text-slate-700"></i>
+                        <p class="text-xs">Belum ada sepatu favorit di wishlist Anda.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const favProducts = products.filter(p => wishlist.includes(p.id));
+            container.innerHTML = favProducts.map(p => `
+                <div class="flex items-center justify-between p-3 bg-slate-800/60 rounded-xl border border-slate-800">
+                    <div class="flex items-center gap-3">
+                        <img src="${p.image}" class="w-14 h-14 object-cover rounded-lg bg-slate-950">
+                        <div>
+                            <h4 class="text-xs font-bold text-white">${p.name}</h4>
+                            <span class="text-xs text-brand-orange font-black">Rp ${p.price.toLocaleString('id-ID')}</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="openQuickView(${p.id}); toggleWishlistModal();" class="bg-brand-orange text-white text-xs px-3 py-1.5 rounded-lg font-bold">Lihat</button>
+                        <button onclick="toggleWishlist(${p.id})" class="text-slate-500 hover:text-red-400 p-1.5 text-xs"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Mobile Nav Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Toast Notification System
+        function showToast(msg, isError = false) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            
+            toastMsg.innerText = msg;
+            if (isError) {
+                toast.classList.remove('border-brand-orange');
+                toast.classList.add('border-red-500');
+            } else {
+                toast.classList.remove('border-red-500');
+                toast.classList.add('border-brand-orange');
+            }
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
